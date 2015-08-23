@@ -1,0 +1,22 @@
+{
+  "name": "DIR_SPA",
+  "version": "0.0.0",
+  "description": "SPA using Node for DIR challenge",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nolds9/DIR_SPA.git"
+  },
+  "author": "Nick Olds (https://github.com/nolds9)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nolds9/DIR_SPA/issues"
+  },
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3"
+  }
+}
