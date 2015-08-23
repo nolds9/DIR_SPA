@@ -1,0 +1,27 @@
+body {
+  background: lemonchiffon;
+  font: 16px/1.5 Helvetica Neue, Helvetica, sans-serif;
+  margin: 0;
+  text-align: center;
+}
+
+.browse {
+  padding: 10px 25px;
+}
+
+h1 {
+  margin: 0;
+}
+
+a {
+  color: #c00;
+}
+
+input[type="search"],
+select {
+  width: 200px;
+}
+
+.fail {
+  color: red;
+}
