@@ -32,5 +32,34 @@ router.post("/favorites", function(req, res){
   });
 });
 
+// favorites#show
+router.get("/favorites/:id", function(req, res){
+  Favorite.findById(req.params.id).then(function(favorite){
+    res.json(favorite);
+  });
+});
+
+// favorites#update
+router.patch("/favorites/:id", function(req, res){
+  Favorite.findById(req.params.id)
+  .then(function(favorite){
+    if(!favorite) return error(res, "not found");
+    return favorite.updateAttributes(req.body);
+  })
+  .then(function(favorite){
+    res.json(favorite);
+  });
+});
+
+router.delete("/favorites/:id", function(req, res){
+  Favorite.findById(req.params.id)
+  .then(function(favorite){
+    if(!favorite) return error(res, "not found");
+    return favorite.destroy()
+  })
+  .then(function(favorite){
+    res.json(favorite)
+  });
+});
 
 module.exports = router

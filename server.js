@@ -14,6 +14,9 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
+// use handlebars for templating
+// app.set("view engine", "hbs");
+
 // Serve app's html file
 app.get("/", function(request, response){
   response.sendFile(__dirname + "/app/views/index.html");
