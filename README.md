@@ -5,8 +5,10 @@
 
 ### Movie Brow.sr
 > An application where users can search for movies, select a result and view relevant information, favorite a movie, and view all favorites.
+
 ### Deployed Version
->Deployed on heroku at: (https://movie-browsr.herokuapp.com)
+>Deployed on heroku at: https://movie-browsr.herokuapp.com
+
 ### User Stories
 - The page should have a form that uses the [OMDBapi](http://www.omdbapi.com/) to search for matching movies and then display the results.
  - *Example*: If a user searches for `Star Wars`, a list of every Star Wars movie will be displayed.
