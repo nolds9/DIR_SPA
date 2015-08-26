@@ -1,12 +1,5 @@
 $(document).ready(function(){
 
- // Favorite.fetch().then(function(favorites){
- //    favorites.forEach(function(favorite){
- //      var view = new FavoriteView(Favorite);
- //      view.render();
- //    })
- //  })
-
   // Define movie browser as an object
   var movieBrowser = {
     //query OMDB with keyword
@@ -55,7 +48,6 @@ $(document).ready(function(){
     },
     // Send ajax post request to favorites
     favorite: function(movie){
-       console.log("In creae function")
         var self = this;
         var url = "/favorites";
         var request = $.ajax({
@@ -71,17 +63,15 @@ $(document).ready(function(){
     },
     // Ajax request to get all favorites
     getFavorites: function(){  
-
         var request = $.getJSON("/favorites")
         .then(function(response){
           var favorites = [];
           for (var i = 0; i < response.length; i++){
             favorites.push(new Favorite(response[i]));
-            console.log(response[i])
-
             $(".favorites").append("<p>"+ response[i].title + "</p>")
           };
            $(".favorites").prepend("<h3> Favorited Movies</h3>")
+
           return favorites;
         })
         .fail(function(response){
@@ -109,54 +99,12 @@ $(document).ready(function(){
 
     // Favorite Button
       $("#favoriteB").on("click", function(movie){
-       console.log("Favorite Button CLicked")
        movieTitle = $("h2").text()
        movieBrowser.favorite({title: movieTitle, favorited: true})
     })  
 
     // list favorites 
       $("#showFavorites").on("click", function(favorite){
-        console.log("Show favorites")
         movieBrowser.getFavorites()
       })
-      // select button
-        // append ul of favorites
-          //li contains favorite.title
-
-
-    // var favoriteButton = $(".favoriteB")
-    // favoriteButton.on("click", function(favoriteData){
-    //   console.log("Favorite Button CLicked")
-    //   create({favorited:true})
-    //   // evt.preventDefault()
-    //   // $("body").css("background", "blue")
-    //   // $.getJSON() 
-    //   //     var url = "/favorites";
-    //   //     var request = $.ajax({
-    //   //       url: url,
-    //   //       method: "post",
-    //   //       data: JSON.stringify(favoriteData),
-    //   //       contentType: "application/json"
-    //   //     })
-    //   //     .then(function(favoriteData){
-    //   //       return new Favorite(favoriteData);   //Maybe include some error handling
-    //   //     })
-    //   //     return request; 
-    // } )
-
-    // create = function(favoriteData){
-      //  console.log("In creae function")
-      //   var self = this;
-      //   var url = "/favorites";
-      //   var request = $.ajax({
-      //     url: url,
-      //     method: "post",
-      //     data: JSON.stringify(favoriteData),
-      //     contentType: "application/json"
-      //   })
-      //   .then(function(favoriteData){
-      //     return new Favorite(favoriteData);   //Maybe include some error handling
-      //   })
-      //   return request;
-      // // };
 })
