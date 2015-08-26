@@ -5,7 +5,7 @@ $(document).ready(function(){
     //query OMDB with keyword
     search:  function (keyword) {
         var self = this;
-        var url = 'http://www.omdbapi.com/?s='+escape(keyword);
+        var url = 'https://www.omdbapi.com/?s='+escape(keyword);
 
         $.getJSON(url)
         // After making request, invoke function to pass along results to next api call
@@ -38,7 +38,7 @@ $(document).ready(function(){
     show:   function(imdbId) {
       if (!imdbId) return;
 
-      var url = 'http://www.omdbapi.com/?i='+imdbId;
+      var url = 'https://www.omdbapi.com/?i='+imdbId;
 
       $.getJSON(url).then(function(imdbMovieData) {
         var detail = '<h2>' + imdbMovieData.Title + '</h2>';
@@ -62,7 +62,7 @@ $(document).ready(function(){
         return request;
     },
     // Ajax request to get all favorites
-    getFavorites: function(){  
+    getFavorites: function(){
         var request = $.getJSON("/favorites")
         .then(function(response){
           var favorites = [];
@@ -79,7 +79,7 @@ $(document).ready(function(){
         });
         return request;
     }
-  } 
+  }
 
   // Add Event Listeners
     // Search form:
@@ -101,9 +101,9 @@ $(document).ready(function(){
       $("#favoriteB").on("click", function(movie){
        movieTitle = $("h2").text()
        movieBrowser.favorite({title: movieTitle, favorited: true})
-    })  
+    })
 
-    // list favorites 
+    // list favorites
       $("#showFavorites").on("click", function(favorite){
         movieBrowser.getFavorites()
       })
