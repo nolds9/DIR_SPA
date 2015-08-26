@@ -41,7 +41,7 @@ $(document).ready(function(){
 
       $('#movie-select').show().html(display);
     },
-    //show selected result's info and poster
+    // Show selected result's info and poster
     show:   function(imdbId) {
       if (!imdbId) return;
 
@@ -53,6 +53,7 @@ $(document).ready(function(){
         $('#movie-detail').html(detail);
       });
     },
+    // Send ajax post request to favorites
     favorite: function(movie){
        console.log("In creae function")
         var self = this;
@@ -64,15 +65,30 @@ $(document).ready(function(){
           contentType: "application/json"
         })
         .then(function(movie){
-          console.log("About to create a new favorite")
-          console.log(movie)
-           console.log("Favorite Button CLicked")
-          movieTitle = $("h2").text()
-           console.log(movieTitle)
          return new Favorite(movie);   //Maybe include some error handling
         })
         return request;
-      }
+    },
+    // Ajax request to get all favorites
+    getFavorites: function(){  
+
+        var request = $.getJSON("/favorites")
+        .then(function(response){
+          var favorites = [];
+          for (var i = 0; i < response.length; i++){
+            favorites.push(new Favorite(response[i]));
+            console.log(response[i])
+
+            $(".favorites").append("<p>"+ response[i].title + "</p>")
+          };
+           $(".favorites").prepend("<h3> Favorited Movies</h3>")
+          return favorites;
+        })
+        .fail(function(response){
+          console.log("failed to fetch favorites");
+        });
+        return request;
+    }
   } 
 
   // Add Event Listeners
@@ -92,16 +108,21 @@ $(document).ready(function(){
     });
 
     // Favorite Button
-       var favoriteButton = $(".favoriteB")
-       favoriteButton.on("click", function(test){
+      $("#favoriteB").on("click", function(movie){
        console.log("Favorite Button CLicked")
        movieTitle = $("h2").text()
-       console.log(movieTitle)
-       console.log(test)
-       var isClicked = true
-       movieBrowser.favorite({title: movieTitle, favorited: isClicked})
+       movieBrowser.favorite({title: movieTitle, favorited: true})
+    })  
 
-    })    
+    // list favorites 
+      $("#showFavorites").on("click", function(favorite){
+        console.log("Show favorites")
+        movieBrowser.getFavorites()
+      })
+      // select button
+        // append ul of favorites
+          //li contains favorite.title
+
 
     // var favoriteButton = $(".favoriteB")
     // favoriteButton.on("click", function(favoriteData){

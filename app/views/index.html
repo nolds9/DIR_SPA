@@ -9,21 +9,24 @@
   </head>
   <body>
     <div class="browse">
-    <h1>Browse Movies</h1>
+      <h1>Browse Movies</h1>
 
-    <form id="search">
-      <input type="search" placeholder="Search for a title..." id="movie-search">
-      <input type="submit" value="Submit">
-    </form>
+      <form id="search">
+        <input type="search" placeholder="Search for a title..." id="movie-search">
+        <input type="submit" value="Submit">
+      </form>
 
-    <select id="movie-select">
-      <option value="">Select a movie...</option>
-    </select>
+      <select id="movie-select">
+        <option value="">Select a movie...</option>
+      </select>
 
-    <div id="movie-detail"></div>
-  </div>
-    <button class="favoriteB">Favorite</button>
+      <div id="movie-detail"></div>
+    </div>
+
+    <button id="favoriteB">Favorite</button>
+    <button id="showFavorites">All Favorites</button>
     <div class="favorites"></div>
+
   </body>
   <script id="favoriteTemplate" type="text/x-handlebars-template">
       <p>{{ completed }}</p>
