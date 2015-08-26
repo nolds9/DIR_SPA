@@ -3,8 +3,8 @@
 ## GA-DC DIR Code Challenge
 > Challenge was to create a single page application that will utilize an external API to request movie data. The client side application will be served by a back-end which will have the ability to persist data.
 
-### Movie Brows.r
-
+### Movie Brow.sr
+> An application where users can search for movies, select a result and view relevant information, favorite a movie, and view all favorites.
 ### User Stories
 - The page should have a form that uses the [OMDBapi](http://www.omdbapi.com/) to search for matching movies and then display the results.
  - *Example*: If a user searches for `Star Wars`, a list of every Star Wars movie will be displayed.
@@ -17,8 +17,8 @@
 - Provide a link to display favorited movies.
 
 ### Notes:
-- Decided to use Node.js back-end to build an Express app with Sequelize and Postgres, and to polish OOJS skills.
-- Machincal Failure and timebox constraints forced this version to fall into the "Bronze" class of MVPs.
+- Decided to polish OOJS skills by using Node.js to build an Express app with Sequelize and Postgres.
+- Timebox constraints and the developer's local machine failing, forced this version to fall into the "Bronze" class of MVPs.
 
 #### Version 1: "Bronze"
 - v1.0's back-end contains a single model, "Favorite"
