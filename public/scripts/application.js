@@ -1,70 +1,64 @@
-// Load Front-End Models and Render Views
 $(document).ready(function(){
+  // Define movie browser as an object
+  var movieBrowser = {
+    //query OMDB with keyword
+    search:  function (keyword) {
+        var self = this;
+        var url = 'http://www.omdbapi.com/?s='+escape(keyword);
 
+        $.getJSON(url)
+        .done(function(imdbResponse){
 
-  // API Docs at:
-  // http://www.omdbapi.com
+          self.imdbDone(keyword, imdbResponse);
+        })
+        .fail(function(imdbResonse, textStatus, errorMessage){
+          var message = "Sorry, we had issues retrieving movie data for '" + keyword + "'";
+          if (errorMessage){
+            message += "(" + errorMessage + ")";
+          }
+          message += ".  Please try again.";
+          $('#movie-detail').html("<h2 class='fail'>" + message + "</h2>");
+        });
+    },
+    // Populate select options with results from query
+    imdbDone:   function (searchKeyword, imdbSearchData) {
+      var display = '<option value="">Movies matching "'+ searchKeyword +'"...</option>';
 
-
-  function search(keyword) {
-    var url = 'http://www.omdbapi.com/?s='+escape(keyword);
-
-    $.getJSON(url)
-    .done(function(imdbResponse){
-      // We want to use both the search keyword and the imdb response in imdbDone
-      //   We use an anonymous function to pass both.
-      imdbDone(keyword, imdbResponse);
-    })
-    .fail(function(imdbResonse, textStatus, errorMessage){
-      var message = "Sorry, we had issues retrieving movie data for '" + keyword + "'";
-      if (errorMessage){
-        message += "(" + errorMessage + ")";
+      for (var i=0; i < imdbSearchData.Search.length; i++) {
+        var movie = imdbSearchData.Search[i];
+        display += ['<option value="', movie.imdbID, '">', movie.Title, '</option>'].join('');
       }
-      message += ".  Please try again.";
-      $('#movie-detail').html("<h2 class='fail'>" + message + "</h2>");
-    });
-  }
 
-  function imdbDone(searchKeyword, imdbSearchData) {
-    var display = '<option value="">Movies matching "'+ searchKeyword +'"...</option>';
+      $('#movie-select').show().html(display);
+    },
+    //show selected result's info and poster
+    show:   function(imdbId) {
+      if (!imdbId) return;
 
-    for (var i=0; i < imdbSearchData.Search.length; i++) {
-      var movie = imdbSearchData.Search[i];
-      display += ['<option value="', movie.imdbID, '">', movie.Title, '</option>'].join('');
+      var url = 'http://www.omdbapi.com/?i='+imdbId;
+
+      $.getJSON(url).then(function(imdbMovieData) {
+        var detail = '<h2>' + imdbMovieData.Title + '</h2>';
+        detail += '<img src="'+ imdbMovieData.Poster +'" alt="'+ imdbMovieData.Title +'">';
+        $('#movie-detail').html(detail);
+      });
     }
+  } 
 
-    $('#movie-select').show().html(display);
-  }
+  // Add Event Listeners
+    // Search form:
+    $('#search').on('submit', function(evt) {
+      evt.preventDefault();
+      var $search = $('#movie-search');
+      var keyword = $search.val();
+      $search.val('');
 
-  function show(imdbId) {
-    if (!imdbId) return;
-
-    var url = 'http://www.omdbapi.com/?i='+imdbId;
-
-    $.getJSON(url).then(function(imdbMovieData) {
-      var detail = '<h2>' + imdbMovieData.Title + '</h2>';
-      detail += '<img src="'+ imdbMovieData.Poster +'" alt="'+ imdbMovieData.Title +'">';
-      $('#movie-detail').html(detail);
+      movieBrowser.search(keyword);
     });
-  }
 
-
-  // Search form:
-
-  $('#search').on('submit', function(evt) {
-    evt.preventDefault();
-    var $search = $('#movie-search');
-    var keyword = $search.val();
-    $search.val('');
-
-    search(keyword);
-  });
-
-
-  // Movie selector:
-
-  $('#movie-select').hide().on('change', function() {
-    show(this.value);
-  });
+    // Movie selector:
+    $('#movie-select').hide().on('change', function() {
+      movieBrowser.show(this.value);
+    });
 
 })

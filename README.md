@@ -16,7 +16,6 @@
 
 #### Front-end Instructions
 
-- Use Vanilla Javascript to complete.
 
 - The page should have a form that uses the [OMDBapi](http://www.omdbapi.com/) to search for matching movies and then display the results.
  - *Example*: If a user searches for `Star Wars`, a list of every Star Wars movie will be displayed.
