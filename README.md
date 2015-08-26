@@ -5,6 +5,8 @@
 
 ### Movie Brow.sr
 > An application where users can search for movies, select a result and view relevant information, favorite a movie, and view all favorites.
+### Deployed Version
+>Deployed on heroku at: (https://movie-browsr.herokuapp.com)
 ### User Stories
 - The page should have a form that uses the [OMDBapi](http://www.omdbapi.com/) to search for matching movies and then display the results.
  - *Example*: If a user searches for `Star Wars`, a list of every Star Wars movie will be displayed.
@@ -23,13 +25,13 @@
 #### Version 1: "Bronze"
 - v1.0's back-end contains a single model, "Favorite"
 - v1.0's front-end is a single file which utilizes OOJS, along with Jquery and AJAX to build an app that meets requirements.
-- v1.0's CSS is minimal 
+- v1.0's CSS is minimal
 
 #### Version 2: "Silver"
 - v2.0's back-end will contain another model, users, and will have a has many relationship with favorites
 - v2.0's back-end will store user associated favorites accross sessions
 - v2.0's back-end models will have full CRUD ability
-- v2.0's front-end will be abstracted into MV*  paradigm 
+- v2.0's front-end will be abstracted into MV*  paradigm
 - v2.0's front-end will contain either a front-end framework to work with CSS or for templating
 
 #### Version : "Gold"
@@ -38,4 +40,3 @@
 - v3.0's authenticated users have the ability to comment/review or share results/favorites
 - v3.0's front-end is constructed utilizing front-end framework and/or JavaScript MVC library.
 - v3.0's CSS and UI are on-point and app is responsive
-
