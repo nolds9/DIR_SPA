@@ -1,4 +1,4 @@
-// Sequelize Model 'Model'
+// Sequelize Model 'Favorite'
 module.exports = function(sequelize, Sequelize){
   return sequelize.define("favorite", {
     title: Sequelize.STRING,

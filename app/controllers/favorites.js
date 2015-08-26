@@ -51,6 +51,7 @@ router.patch("/favorites/:id", function(req, res){
   });
 });
 
+// favorites#destroy
 router.delete("/favorites/:id", function(req, res){
   Favorite.findById(req.params.id)
   .then(function(favorite){

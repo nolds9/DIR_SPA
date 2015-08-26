@@ -3,8 +3,6 @@ var Favorite = function(info){
   for (var attribute in info){
     this[attribute] = info[attribute];
   };
-  // var self = this;
-  // self.favorited = false;
 };
 
 Favorite.fetch = function(){
