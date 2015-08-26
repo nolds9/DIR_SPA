@@ -4,10 +4,7 @@
     <meta charset="utf-8">
     <title>GA DIR | SPA</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="/scripts/models/favorite.js"></script>
-    <script src="/scripts/views/favoriteView.js"></script>
-    <script src="/scripts/application.js"></script>
+
 
   </head>
   <body>
@@ -25,5 +22,17 @@
 
     <div id="movie-detail"></div>
   </div>
+    <button class="favoriteB">Favorite</button>
+    <div class="favorites"></div>
   </body>
+  <script id="favoriteTemplate" type="text/x-handlebars-template">
+      <p>{{ completed }}</p>
+    <button class='favoritesB'>Favorite HBS</button>
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.js"></script>
+  <script src="/scripts/models/favorite.js"></script>
+  <script src="/scripts/views/favoriteView.js"></script>
+  <script src="/scripts/application.js"></script> 
+
 </html>
